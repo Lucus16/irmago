@@ -111,11 +111,11 @@ func (sme SchemeManagerError) Error() string {
 }
 
 type ConfigurationOptions struct {
-	Assets             string
-	ReadOnly           bool
-	RevocationDB       string
-	RevocationDBType   string
-	RevocationSettings map[CredentialTypeIdentifier]*RevocationSetting
+	Assets              string
+	ReadOnly            bool
+	RevocationDBConnStr string
+	RevocationDBType    string
+	RevocationSettings  map[CredentialTypeIdentifier]*RevocationSetting
 }
 
 // NewConfiguration returns a new configuration. After this
@@ -130,7 +130,7 @@ func NewConfiguration(path string, opts ConfigurationOptions) (conf *Configurati
 	if err = conf.Revocation.Load(
 		Logger.IsLevelEnabled(logrus.DebugLevel),
 		opts.RevocationDBType,
-		opts.RevocationDB,
+		opts.RevocationDBConnStr,
 		opts.RevocationSettings,
 	); err != nil {
 		return nil, err
