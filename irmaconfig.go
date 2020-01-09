@@ -53,7 +53,7 @@ type Configuration struct {
 	// (i.e., invalid signature, parsing error), and the problem that occurred when parsing them
 	DisabledSchemeManagers map[SchemeManagerIdentifier]*SchemeManagerError
 
-	Warnings []string
+	Warnings []string `json:"-"`
 
 	kssPublicKeys map[SchemeManagerIdentifier]map[int]*rsa.PublicKey
 	publicKeys    map[IssuerIdentifier]map[int]*gabi.PublicKey
