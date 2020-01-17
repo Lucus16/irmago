@@ -33,7 +33,7 @@
   version = "1.0.0"
 
 [[constraint]]
-  branch = "master"
+  branch = "newKeyshareServer"
   name = "github.com/privacybydesign/gabi"
 
 [[constraint]]

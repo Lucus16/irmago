@@ -16,7 +16,7 @@ import (
 
 	"github.com/go-errors/errors"
 	"github.com/privacybydesign/gabi"
-	"github.com/privacybydesign/irmago"
+	irma "github.com/privacybydesign/irmago"
 	"github.com/privacybydesign/irmago/internal/fs"
 	"github.com/sirupsen/logrus"
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"
@@ -78,7 +78,7 @@ type SessionPackage struct {
 type SessionResult struct {
 	Token       string                       `json:"token"`
 	Status      Status                       `json:"status"`
-	Type        irma.Action                  `json:"type"'`
+	Type        irma.Action                  `json:"type"`
 	ProofStatus irma.ProofStatus             `json:"proofStatus,omitempty"`
 	Disclosed   [][]*irma.DisclosedAttribute `json:"disclosed,omitempty"`
 	Signature   *irma.SignedMessage          `json:"signature,omitempty"`
@@ -202,6 +202,7 @@ func WriteResponse(w http.ResponseWriter, object interface{}, rerr *irma.RemoteE
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	w.Write(bts)
+	fmt.Println(string(bts))
 }
 
 // WriteString writes the specified string to the http.ResponseWriter.
