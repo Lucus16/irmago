@@ -1514,7 +1514,7 @@ func (conf *Configuration) ValidateKeys() error {
 			if err != nil {
 				return err
 			}
-			if typ.SupportsRevocation() && !pk.RevocationSupported() {
+			if typ.RevocationSupported() && !pk.RevocationSupported() {
 				return errors.Errorf("credential type %s supports revocation but latest private key of issuer %s does not", typ, issuerid)
 			}
 		}
