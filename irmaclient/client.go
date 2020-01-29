@@ -62,12 +62,10 @@ var SentryDSN = ""
 
 type Preferences struct {
 	EnableCrashReporting bool
-	QrScannerOnStartup bool
 }
 
 var defaultPreferences = Preferences{
 	EnableCrashReporting: true,
-	QrScannerOnStartup: false,
 }
 
 // KeyshareHandler is used for asking the user for his email address and PIN,
@@ -987,13 +985,6 @@ func (client *Client) LoadLogsBefore(beforeIndex uint64, max int) ([]*LogEntry, 
 // Has effect only after restarting.
 func (client *Client) SetCrashReportingPreference(enable bool) {
 	client.Preferences.EnableCrashReporting = enable
-	_ = client.storage.StorePreferences(client.Preferences)
-	client.applyPreferences()
-}
-
-// SetQrScannerOnStartup toggles whether or not QR scanner is shown on startup of app.
-func (client *Client) SetQrScannerOnStartupPreference(enable bool) {
-	client.Preferences.QrScannerOnStartup = enable
 	_ = client.storage.StorePreferences(client.Preferences)
 	client.applyPreferences()
 }
